@@ -100,3 +100,105 @@ button {
 button:hover {
     background: #1d4ed8;
 }
+
+/* ================================
+   Alumni Directory Table
+================================ */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, .10);
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1400px;
+    background: white;
+}
+
+/* Table Header */
+thead {
+    background: #2563eb;
+    color: white;
+}
+
+th {
+    padding: 15px 12px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* Table Data */
+td {
+    padding: 13px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 14px;
+    color: #334155;
+    vertical-align: middle;
+}
+
+/* Alternate row color */
+tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+/* Hover effect */
+tbody tr:hover {
+    background: #eef4ff;
+}
+
+/* Profile photo */
+td img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #2563eb;
+}
+
+/* No photo text */
+td {
+    white-space: nowrap;
+}
+
+/* Links */
+a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Subtitle */
+.subtitle {
+    color: #64748b;
+    margin-top: 8px;
+}
+
+/* Mobile / smaller screens */
+@media (max-width: 768px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    table {
+        min-width: 1400px;
+    }
+
+}

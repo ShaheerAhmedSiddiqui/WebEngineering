@@ -15,7 +15,7 @@
                 <h1>Alumni Registration</h1>
                 <p>Join our Alumni Community</p>
             </div>
-            <form action="register.php" method="POST">
+            <form action="register.php" method="POST" enctype="multipart/form-data">
                 <h2>Personal Information</h2>
                 <div class="form-group">
                     <label for="full_name">Full Name</label>
@@ -39,6 +39,15 @@
                 <div class="form-group">
                     <label for="date_of_birth">Date of Birth</label>
                     <input type="date" id="date_of_birth" name="date_of_birth" required>
+                </div>
+                <div class="form-group">
+                    <label for="profile_photo">Profile Photo</label>
+
+                    <input type="file" id="profile_photo" name="profile_photo" accept="image/jpeg,image/png,image/webp">
+
+                    <small>
+                        Accepted formats: JPG, PNG, WEBP. Maximum size: 2 MB.
+                    </small>
                 </div>
                 <h2>Academic Information</h2>
                 <div class="form-group">
