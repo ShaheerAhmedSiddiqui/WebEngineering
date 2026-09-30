@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Alumni</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Alumni Management System</h1>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                <h3>AlumniConnect</h3>
+            </div>
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="/">Home</a>
+                </li>
+
+                <li>
+                    <a href="/alumni">Alumni</a>
+                </li>
+
+                <li>
+                    <a href="/register">Register</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <div class="container">
+
+            <h2>Edit Alumni</h2>
+
+            <p>
+                Editing Alumni ID:
+                <strong><%= alumni.id %></strong>
+            </p>
+
+
+            <form
+                action="/alumni/edit/<%= alumni.id %>"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+
+                <!-- Personal Information -->
+
+                <h3>Personal Information</h3>
+
+
+                <label for="full_name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="full_name"
+                    name="full_name"
+                    value="<%= alumni.full_name || '' %>"
+                    required
+                >
+
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="<%= alumni.email || '' %>"
+                    required
+                >
+
+
+                <label for="password">
+                    New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Leave empty to keep current password"
+                >
+
+
+                <label for="phone">
+                    Phone
+                </label>
+
+                <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    value="<%= alumni.phone || '' %>"
+                >
+
+
+                <label for="dob">
+                    Date of Birth
+                </label>
+
+                <input
+                    type="date"
+                    id="dob"
+                    name="dob"
+                    value="<%= alumni.dob || '' %>"
+                >
+
+
+                <label for="gender">
+                    Gender
+                </label>
+
+                <select
+                    id="gender"
+                    name="gender"
+                >
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option
+                        value="Male"
+                        <%= alumni.gender === "Male" ? "selected" : "" %>
+                    >
+                        Male
+                    </option>
+
+                    <option
+                        value="Female"
+                        <%= alumni.gender === "Female" ? "selected" : "" %>
+                    >
+                        Female
+                    </option>
+
+                    <option
+                        value="Other"
+                        <%= alumni.gender === "Other" ? "selected" : "" %>
+                    >
+                        Other
+                    </option>
+
+                </select>
+
+
+                <!-- Academic Information -->
+
+                <h3>Academic Information</h3>
+
+
+                <label for="department">
+                    Department
+                </label>
+
+                <select
+                    id="department"
+                    name="department"
+                >
+
+                    <option value="">
+                        Select Department
+                    </option>
+
+                    <option
+                        value="Software Engineering"
+                        <%= alumni.department === "Software Engineering" ? "selected" : "" %>
+                    >
+                        Software Engineering
+                    </option>
+
+                    <option
+                        value="Computer Science"
+                        <%= alumni.department === "Computer Science" ? "selected" : "" %>
+                    >
+                        Computer Science
+                    </option>
+
+                    <option
+                        value="Information Technology"
+                        <%= alumni.department === "Information Technology" ? "selected" : "" %>
+                    >
+                        Information Technology
+                    </option>
+
+                    <option
+                        value="Electrical Engineering"
+                        <%= alumni.department === "Electrical Engineering" ? "selected" : "" %>
+                    >
+                        Electrical Engineering
+                    </option>
+
+                    <option
+                        value="Business Administration"
+                        <%= alumni.department === "Business Administration" ? "selected" : "" %>
+                    >
+                        Business Administration
+                    </option>
+
+                </select>
+
+
+                <label for="graduation_year">
+                    Graduation Year
+                </label>
+
+                <input
+                    type="number"
+                    id="graduation_year"
+                    name="graduation_year"
+                    value="<%= alumni.graduation_year || '' %>"
+                >
+
+
+                <label for="cgpa">
+                    CGPA
+                </label>
+
+                <input
+                    type="number"
+                    id="cgpa"
+                    name="cgpa"
+                    min="0"
+                    max="4"
+                    step="0.01"
+                    value="<%= alumni.cgpa || '' %>"
+                >
+
+
+                <label for="degree_program">
+                    Degree Program
+                </label>
+
+                <input
+                    type="text"
+                    id="degree_program"
+                    name="degree_program"
+                    value="<%= alumni.degree_program || '' %>"
+                >
+
+
+                <!-- Employment -->
+
+                <h3>Employment Information</h3>
+
+
+                <label for="employment_status">
+                    Employment Status
+                </label>
+
+                <select
+                    id="employment_status"
+                    name="employment_status"
+                >
+
+                    <option value="">
+                        Select Status
+                    </option>
+
+                    <option
+                        value="Employed"
+                        <%= alumni.employment_status === "Employed" ? "selected" : "" %>
+                    >
+                        Employed
+                    </option>
+
+                    <option
+                        value="Self Employed"
+                        <%= alumni.employment_status === "Self Employed" ? "selected" : "" %>
+                    >
+                        Self Employed
+                    </option>
+
+                    <option
+                        value="Unemployed"
+                        <%= alumni.employment_status === "Unemployed" ? "selected" : "" %>
+                    >
+                        Unemployed
+                    </option>
+
+                    <option
+                        value="Student"
+                        <%= alumni.employment_status === "Student" ? "selected" : "" %>
+                    >
+                        Student
+                    </option>
+
+                </select>
+
+
+                <label for="company">
+                    Company
+                </label>
+
+                <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value="<%= alumni.company || '' %>"
+                >
+
+
+                <label for="job_title">
+                    Job Title
+                </label>
+
+                <input
+                    type="text"
+                    id="job_title"
+                    name="job_title"
+                    value="<%= alumni.job_title || '' %>"
+                >
+
+
+                <label for="skills">
+                    Skills
+                </label>
+
+                <input
+                    type="text"
+                    id="skills"
+                    name="skills"
+                    value="<%= alumni.skills || '' %>"
+                >
+
+
+                <!-- Contact -->
+
+                <h3>Contact Information</h3>
+
+
+                <label for="contact_preference">
+                    Contact Preference
+                </label>
+
+                <select
+                    id="contact_preference"
+                    name="contact_preference"
+                >
+
+                    <option value="">
+                        Select Preference
+                    </option>
+
+                    <option
+                        value="Email"
+                        <%= alumni.contact_preference === "Email" ? "selected" : "" %>
+                    >
+                        Email
+                    </option>
+
+                    <option
+                        value="Phone"
+                        <%= alumni.contact_preference === "Phone" ? "selected" : "" %>
+                    >
+                        Phone
+                    </option>
+
+                    <option
+                        value="LinkedIn"
+                        <%= alumni.contact_preference === "LinkedIn" ? "selected" : "" %>
+                    >
+                        LinkedIn
+                    </option>
+
+                </select>
+
+
+                <label for="linkedin">
+                    LinkedIn
+                </label>
+
+                <input
+                    type="url"
+                    id="linkedin"
+                    name="linkedin"
+                    value="<%= alumni.linkedin || '' %>"
+                >
+
+
+                <label for="bio">
+                    Bio
+                </label>
+
+                <textarea
+                    id="bio"
+                    name="bio"
+                    rows="5"
+                ><%= alumni.bio || '' %></textarea>
+
+
+                <!-- Current Files -->
+
+                <h3>Current Files</h3>
+
+
+                <% if (alumni.profile_image) { %>
+
+                    <p>
+                        Current Profile Image:
+                    </p>
+
+                    <img
+                        src="/uploads/<%= alumni.profile_image %>"
+                        alt="Current Profile"
+                        width="120"
+                        height="120"
+                    >
+
+                <% } else { %>
+
+                    <p>
+                        No profile image uploaded.
+                    </p>
+
+                <% } %>
+
+
+                <% if (alumni.resume) { %>
+
+                    <p>
+
+                        Current Resume:
+
+                        <a
+                            href="/uploads/documents/<%= alumni.resume %>"
+                            target="_blank"
+                        >
+                            View Resume
+                        </a>
+
+                    </p>
+
+                <% } else { %>
+
+                    <p>
+                        No resume uploaded.
+                    </p>
+
+                <% } %>
+
+
+                <!-- New Files -->
+
+                <h3>Upload New Files</h3>
+
+
+                <label for="profile_image">
+                    New Profile Image
+                </label>
+
+                <input
+                    type="file"
+                    id="profile_image"
+                    name="profile_image"
+                    accept=".jpg,.jpeg,.png,.gif"
+                >
+
+
+                <label for="resume">
+                    New Resume
+                </label>
+
+                <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf,.doc,.docx"
+                >
+
+
+                <p>
+                    Leave the file fields empty if you want to keep
+                    the existing files.
+                </p>
+
+
+                <br>
+
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Save Changes
+                </button>
+
+
+                <a
+                    href="/alumni/<%= alumni.id %>"
+                    class="btn"
+                >
+                    Cancel
+                </a>
+
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Alumni Management System &copy; 2026
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

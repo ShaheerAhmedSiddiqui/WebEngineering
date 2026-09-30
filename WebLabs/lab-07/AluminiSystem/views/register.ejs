@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register Alumni</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Alumni Management System</h1>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                <h3>AlumniConnect</h3>
+            </div>
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="/">Home</a>
+                </li>
+
+                <li>
+                    <a href="/alumni">Alumni</a>
+                </li>
+
+                <li>
+                    <a href="/register">Register</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <div class="container">
+
+            <h2>Register New Alumni</h2>
+
+            <form
+                action="/register"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                <!-- Personal Information -->
+
+                <h3>Personal Information</h3>
+
+                <label for="full_name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="full_name"
+                    name="full_name"
+                    placeholder="Enter full name"
+                    required
+                >
+
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter email"
+                    required
+                >
+
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required
+                >
+
+
+                <label for="phone">
+                    Phone
+                </label>
+
+                <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    placeholder="03XX-XXXXXXX"
+                >
+
+
+                <label for="dob">
+                    Date of Birth
+                </label>
+
+                <input
+                    type="date"
+                    id="dob"
+                    name="dob"
+                >
+
+
+                <label for="gender">
+                    Gender
+                </label>
+
+                <select id="gender" name="gender">
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+
+                <!-- Academic Information -->
+
+                <h3>Academic Information</h3>
+
+
+                <label for="department">
+                    Department
+                </label>
+
+                <select
+                    id="department"
+                    name="department"
+                >
+
+                    <option value="">
+                        Select Department
+                    </option>
+
+                    <option value="Software Engineering">
+                        Software Engineering
+                    </option>
+
+                    <option value="Computer Science">
+                        Computer Science
+                    </option>
+
+                    <option value="Information Technology">
+                        Information Technology
+                    </option>
+
+                    <option value="Electrical Engineering">
+                        Electrical Engineering
+                    </option>
+
+                    <option value="Business Administration">
+                        Business Administration
+                    </option>
+
+                </select>
+
+
+                <label for="graduation_year">
+                    Graduation Year
+                </label>
+
+                <input
+                    type="number"
+                    id="graduation_year"
+                    name="graduation_year"
+                    min="2000"
+                    max="2100"
+                    placeholder="2026"
+                >
+
+
+                <label for="cgpa">
+                    CGPA
+                </label>
+
+                <input
+                    type="number"
+                    id="cgpa"
+                    name="cgpa"
+                    min="0"
+                    max="4"
+                    step="0.01"
+                    placeholder="3.50"
+                >
+
+
+                <label for="degree_program">
+                    Degree Program
+                </label>
+
+                <input
+                    type="text"
+                    id="degree_program"
+                    name="degree_program"
+                    placeholder="BS Software Engineering"
+                >
+
+
+                <!-- Employment Information -->
+
+                <h3>Employment Information</h3>
+
+
+                <label for="employment_status">
+                    Employment Status
+                </label>
+
+                <select
+                    id="employment_status"
+                    name="employment_status"
+                >
+
+                    <option value="">
+                        Select Status
+                    </option>
+
+                    <option value="Employed">
+                        Employed
+                    </option>
+
+                    <option value="Self Employed">
+                        Self Employed
+                    </option>
+
+                    <option value="Unemployed">
+                        Unemployed
+                    </option>
+
+                    <option value="Student">
+                        Student
+                    </option>
+
+                </select>
+
+
+                <label for="company">
+                    Company
+                </label>
+
+                <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    placeholder="Company name"
+                >
+
+
+                <label for="job_title">
+                    Job Title
+                </label>
+
+                <input
+                    type="text"
+                    id="job_title"
+                    name="job_title"
+                    placeholder="Software Engineer"
+                >
+
+
+                <label for="skills">
+                    Skills
+                </label>
+
+                <input
+                    type="text"
+                    id="skills"
+                    name="skills"
+                    placeholder="JavaScript, Node.js, React, MySQL"
+                >
+
+
+                <!-- Contact Information -->
+
+                <h3>Contact Information</h3>
+
+
+                <label>
+                    Contact Preference
+                </label>
+
+                <select name="contact_preference">
+
+                    <option value="">
+                        Select Preference
+                    </option>
+
+                    <option value="Email">
+                        Email
+                    </option>
+
+                    <option value="Phone">
+                        Phone
+                    </option>
+
+                    <option value="LinkedIn">
+                        LinkedIn
+                    </option>
+
+                </select>
+
+
+                <label for="linkedin">
+                    LinkedIn Profile
+                </label>
+
+                <input
+                    type="url"
+                    id="linkedin"
+                    name="linkedin"
+                    placeholder="https://linkedin.com/in/example"
+                >
+
+
+                <label for="bio">
+                    Bio
+                </label>
+
+                <textarea
+                    id="bio"
+                    name="bio"
+                    rows="5"
+                    placeholder="Write a short biography..."
+                ></textarea>
+
+
+                <!-- Files -->
+
+                <h3>Files</h3>
+
+
+                <label for="profile_image">
+                    Profile Image
+                </label>
+
+                <input
+                    type="file"
+                    id="profile_image"
+                    name="profile_image"
+                    accept=".jpg,.jpeg,.png,.gif"
+                >
+
+
+                <label for="resume">
+                    Resume
+                </label>
+
+                <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf,.doc,.docx"
+                >
+
+
+                <!-- Other -->
+
+                <h3>Other Information</h3>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="newsletter"
+                        value="1"
+                    >
+
+                    Subscribe to newsletter
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="terms_accepted"
+                        value="1"
+                        required
+                    >
+
+                    I accept the Terms & Conditions
+                </label>
+
+
+                <br>
+
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Register Alumni
+                </button>
+
+
+                <a
+                    href="/alumni"
+                    class="btn"
+                >
+                    View Alumni
+                </a>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Alumni Management System &copy; 2026
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registration Successful</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Alumni Management System</h1>
+
+    </header>
+
+
+    <main>
+
+        <div class="container">
+
+            <h2>Registration Successful!</h2>
+
+            <p>
+                Alumni <strong><%= name %></strong>
+                has been successfully registered.
+            </p>
+
+            <p>
+                Alumni ID:
+                <strong><%= id %></strong>
+            </p>
+
+
+            <% if (profileImage) { %>
+
+                <div>
+
+                    <p>Profile Image:</p>
+
+                    <img
+                        src="/uploads/<%= profileImage %>"
+                        alt="Profile Image"
+                        width="150"
+                    >
+
+                </div>
+
+            <% } %>
+
+
+            <br>
+
+
+            <a
+                href="/alumni"
+                class="btn"
+            >
+                View All Alumni
+            </a>
+
+
+            <a
+                href="/register"
+                class="btn"
+            >
+                Register Another Alumni
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Alumni Management System &copy; 2026
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

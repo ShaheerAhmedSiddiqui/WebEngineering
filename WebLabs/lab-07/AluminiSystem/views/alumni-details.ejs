@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alumni Details</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Alumni Management System</h1>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                <h3>AlumniConnect</h3>
+            </div>
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="/">Home</a>
+                </li>
+
+                <li>
+                    <a href="/alumni">Alumni</a>
+                </li>
+
+                <li>
+                    <a href="/register">Register</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <div class="container">
+
+            <h2>Alumni Details</h2>
+
+
+            <!-- Profile Image -->
+
+            <% if (alumni.profile_image) { %>
+
+                <div>
+
+                    <img
+                        src="/uploads/<%= alumni.profile_image %>"
+                        alt="Profile Image"
+                        width="180"
+                        height="180"
+                    >
+
+                </div>
+
+            <% } %>
+
+
+            <h3>
+                <%= alumni.full_name %>
+            </h3>
+
+
+            <!-- Personal Information -->
+
+            <h3>Personal Information</h3>
+
+            <p>
+                <strong>ID:</strong>
+                <%= alumni.id %>
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                <%= alumni.email %>
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                <%= alumni.phone || "N/A" %>
+            </p>
+
+            <p>
+                <strong>Date of Birth:</strong>
+                <%= alumni.dob || "N/A" %>
+            </p>
+
+            <p>
+                <strong>Gender:</strong>
+                <%= alumni.gender || "N/A" %>
+            </p>
+
+
+            <!-- Academic Information -->
+
+            <h3>Academic Information</h3>
+
+            <p>
+                <strong>Department:</strong>
+                <%= alumni.department || "N/A" %>
+            </p>
+
+            <p>
+                <strong>Graduation Year:</strong>
+                <%= alumni.graduation_year || "N/A" %>
+            </p>
+
+            <p>
+                <strong>CGPA:</strong>
+                <%= alumni.cgpa || "N/A" %>
+            </p>
+
+            <p>
+                <strong>Degree Program:</strong>
+                <%= alumni.degree_program || "N/A" %>
+            </p>
+
+
+            <!-- Employment Information -->
+
+            <h3>Employment Information</h3>
+
+            <p>
+                <strong>Status:</strong>
+                <%= alumni.employment_status || "N/A" %>
+            </p>
+
+            <p>
+                <strong>Company:</strong>
+                <%= alumni.company || "N/A" %>
+            </p>
+
+            <p>
+                <strong>Job Title:</strong>
+                <%= alumni.job_title || "N/A" %>
+            </p>
+
+            <p>
+                <strong>Skills:</strong>
+                <%= alumni.skills || "N/A" %>
+            </p>
+
+
+            <!-- Contact Information -->
+
+            <h3>Contact Information</h3>
+
+            <p>
+                <strong>Contact Preference:</strong>
+                <%= alumni.contact_preference || "N/A" %>
+            </p>
+
+
+            <% if (alumni.linkedin) { %>
+
+                <p>
+
+                    <strong>LinkedIn:</strong>
+
+                    <a
+                        href="<%= alumni.linkedin %>"
+                        target="_blank"
+                    >
+                        View LinkedIn Profile
+                    </a>
+
+                </p>
+
+            <% } else { %>
+
+                <p>
+                    <strong>LinkedIn:</strong>
+                    N/A
+                </p>
+
+            <% } %>
+
+
+            <!-- Bio -->
+
+            <h3>Bio</h3>
+
+            <p>
+                <%= alumni.bio || "No biography available." %>
+            </p>
+
+
+            <!-- Resume -->
+
+            <h3>Resume</h3>
+
+            <% if (alumni.resume) { %>
+
+                <a
+                    href="/uploads/documents/<%= alumni.resume %>"
+                    target="_blank"
+                    class="btn"
+                >
+                    View Resume
+                </a>
+
+            <% } else { %>
+
+                <p>
+                    No resume uploaded.
+                </p>
+
+            <% } %>
+
+
+            <br>
+            <br>
+
+
+            <!-- Actions -->
+
+            <a
+                href="/alumni/edit/<%= alumni.id %>"
+                class="btn"
+            >
+                Edit Alumni
+            </a>
+
+
+            <form
+                action="/alumni/delete/<%= alumni.id %>"
+                method="POST"
+                style="display:inline;"
+                onsubmit="return confirm('Are you sure you want to delete this alumni record?');"
+            >
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Delete Alumni
+                </button>
+
+            </form>
+
+
+            <a
+                href="/alumni"
+                class="btn"
+            >
+                Back to Alumni
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Alumni Management System &copy; 2026
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
