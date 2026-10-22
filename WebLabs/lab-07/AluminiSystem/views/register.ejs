@@ -4,13 +4,21 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Register Alumni</title>
 
-    <link rel="stylesheet" href="/style.css">
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
 
 </head>
+
 
 <body>
 
@@ -51,15 +59,19 @@
 
             <h2>Register New Alumni</h2>
 
+
             <form
                 action="/register"
                 method="POST"
                 enctype="multipart/form-data"
             >
 
-                <!-- Personal Information -->
+                <!-- ========================================= -->
+                <!-- PERSONAL INFORMATION -->
+                <!-- ========================================= -->
 
                 <h3>Personal Information</h3>
+
 
                 <label for="full_name">
                     Full Name
@@ -109,6 +121,7 @@
                     id="phone"
                     name="phone"
                     placeholder="03XX-XXXXXXX"
+                    required
                 >
 
 
@@ -127,7 +140,10 @@
                     Gender
                 </label>
 
-                <select id="gender" name="gender">
+                <select
+                    id="gender"
+                    name="gender"
+                >
 
                     <option value="">
                         Select Gender
@@ -148,9 +164,23 @@
                 </select>
 
 
-                <!-- Academic Information -->
+                <!-- ========================================= -->
+                <!-- ACADEMIC INFORMATION -->
+                <!-- ========================================= -->
 
                 <h3>Academic Information</h3>
+
+
+                <label for="student_id">
+                    Student ID
+                </label>
+
+                <input
+                    type="text"
+                    id="student_id"
+                    name="student_id"
+                    placeholder="053-24-0038"
+                >
 
 
                 <label for="department">
@@ -160,6 +190,7 @@
                 <select
                     id="department"
                     name="department"
+                    required
                 >
 
                     <option value="">
@@ -200,6 +231,7 @@
                     min="2000"
                     max="2100"
                     placeholder="2026"
+                    required
                 >
 
 
@@ -230,7 +262,9 @@
                 >
 
 
-                <!-- Employment Information -->
+                <!-- ========================================= -->
+                <!-- EMPLOYMENT INFORMATION -->
+                <!-- ========================================= -->
 
                 <h3>Employment Information</h3>
 
@@ -276,6 +310,7 @@
                     id="company"
                     name="company"
                     placeholder="Company name"
+                    required
                 >
 
 
@@ -303,16 +338,59 @@
                 >
 
 
-                <!-- Contact Information -->
+                <!-- ========================================= -->
+                <!-- CONTACT INFORMATION -->
+                <!-- ========================================= -->
 
                 <h3>Contact Information</h3>
 
 
-                <label>
+                <label for="city">
+                    City
+                </label>
+
+                <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    placeholder="Hyderabad"
+                    required
+                >
+
+
+                <label for="country">
+                    Country
+                </label>
+
+                <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    placeholder="Pakistan"
+                    required
+                >
+
+
+                <label for="address">
+                    Address
+                </label>
+
+                <textarea
+                    id="address"
+                    name="address"
+                    rows="3"
+                    placeholder="Enter your address..."
+                ></textarea>
+
+
+                <label for="contact_preference">
                     Contact Preference
                 </label>
 
-                <select name="contact_preference">
+                <select
+                    id="contact_preference"
+                    name="contact_preference"
+                >
 
                     <option value="">
                         Select Preference
@@ -357,7 +435,9 @@
                 ></textarea>
 
 
-                <!-- Files -->
+                <!-- ========================================= -->
+                <!-- FILES -->
+                <!-- ========================================= -->
 
                 <h3>Files</h3>
 
@@ -386,12 +466,15 @@
                 >
 
 
-                <!-- Other -->
+                <!-- ========================================= -->
+                <!-- OTHER INFORMATION -->
+                <!-- ========================================= -->
 
                 <h3>Other Information</h3>
 
 
                 <label>
+
                     <input
                         type="checkbox"
                         name="newsletter"
@@ -399,10 +482,12 @@
                     >
 
                     Subscribe to newsletter
+
                 </label>
 
 
                 <label>
+
                     <input
                         type="checkbox"
                         name="terms_accepted"
@@ -411,6 +496,7 @@
                     >
 
                     I accept the Terms & Conditions
+
                 </label>
 
 

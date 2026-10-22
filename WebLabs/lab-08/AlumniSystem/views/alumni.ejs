@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alumni Directory</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Alumni Management System</h1>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                <h3>AlumniConnect</h3>
+            </div>
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="/">Home</a>
+                </li>
+
+                <li>
+                    <a href="/alumni">Alumni</a>
+                </li>
+
+                <li>
+                    <a href="/register">Register</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <div class="container">
+
+            <h2>Alumni Directory</h2>
+
+
+            <!-- Search -->
+
+            <form
+                action="/alumni/search"
+                method="GET"
+            >
+
+                <h3>Search Alumni</h3>
+
+
+                <label for="full_name">
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="full_name"
+                    name="full_name"
+                    placeholder="Search by name"
+                >
+
+
+                <label for="department">
+                    Department
+                </label>
+
+                <select
+                    id="department"
+                    name="department"
+                >
+
+                    <option value="">
+                        All Departments
+                    </option>
+
+                    <option value="Software Engineering">
+                        Software Engineering
+                    </option>
+
+                    <option value="Computer Science">
+                        Computer Science
+                    </option>
+
+                    <option value="Information Technology">
+                        Information Technology
+                    </option>
+
+                    <option value="Electrical Engineering">
+                        Electrical Engineering
+                    </option>
+
+                    <option value="Business Administration">
+                        Business Administration
+                    </option>
+
+                </select>
+
+
+                <label for="graduation_year">
+                    Graduation Year
+                </label>
+
+                <input
+                    type="number"
+                    id="graduation_year"
+                    name="graduation_year"
+                    placeholder="2026"
+                >
+
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Search
+                </button>
+
+
+                <a
+                    href="/alumni"
+                    class="btn"
+                >
+                    Clear
+                </a>
+
+            </form>
+
+
+            <hr>
+
+
+            <!-- Alumni Table -->
+
+            <h3>
+                Alumni Records
+            </h3>
+
+
+            <% if (alumni.length === 0) { %>
+
+                <p>
+                    No alumni records found.
+                </p>
+
+            <% } else { %>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Photo</th>
+
+                                <th>Name</th>
+
+                                <th>Email</th>
+
+                                <th>Graduation Year</th>
+
+                                <th>Department</th>
+
+                                <th>Degree</th>
+
+                                <th>Company</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <% alumni.forEach(function(person) { %>
+
+                                <tr>
+
+                                    <td>
+                                        <%= person.id %>
+                                    </td>
+
+
+                                    <td>
+
+                                        <% if (person.profile_image) { %>
+
+                                            <img
+                                                src="/uploads/<%= person.profile_image %>"
+                                                alt="Profile"
+                                                width="60"
+                                                height="60"
+                                            >
+
+                                        <% } else { %>
+
+                                            No Image
+
+                                        <% } %>
+
+                                    </td>
+
+
+                                    <td>
+                                        <%= person.full_name %>
+                                    </td>
+
+
+                                    <td>
+                                        <%= person.email %>
+                                    </td>
+
+
+                                    <td>
+                                        <%= person.graduation_year || "N/A" %>
+                                    </td>
+
+
+                                    <td>
+                                        <%= person.department || "N/A" %>
+                                    </td>
+
+
+                                    <td>
+                                        <%= person.degree_program || "N/A" %>
+                                    </td>
+
+
+                                    <td>
+                                        <%= person.company || "N/A" %>
+                                    </td>
+
+
+                                    <td>
+
+                                        <a
+                                            href="/alumni/<%= person.id %>"
+                                            class="btn"
+                                        >
+                                            View
+                                        </a>
+
+
+                                        <a
+                                            href="/alumni/edit/<%= person.id %>"
+                                            class="btn"
+                                        >
+                                            Edit
+                                        </a>
+
+
+                                        <form
+                                            action="/alumni/delete/<%= person.id %>"
+                                            method="POST"
+                                            style="display:inline;"
+                                            onsubmit="return confirm('Are you sure you want to delete this alumni record?');"
+                                        >
+
+                                            <button
+                                                type="submit"
+                                                class="btn"
+                                            >
+                                                Delete
+                                            </button>
+
+                                        </form>
+
+                                    </td>
+
+                                </tr>
+
+                            <% }); %>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            <% } %>
+
+
+            <br>
+
+
+            <a
+                href="/register"
+                class="btn"
+            >
+                Add New Alumni
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Alumni Management System &copy; 2026
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

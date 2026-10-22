@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Alumni Management System</h1>
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                <h3>
+                    AlumniConnect
+                </h3>
+
+            </div>
+
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="/">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/alumni">
+                        Alumni
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/register">
+                        Register
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/logout">
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <div class="profile-card">
+
+
+            <div class="profile-image">
+
+                <% if (alumni.profile_image) { %>
+
+                    <img
+                        src="/uploads/<%= alumni.profile_image %>"
+                        alt="Alumni Profile"
+                    >
+
+                <% } else { %>
+
+                    <div
+                        style="
+                            padding: 40px;
+                            text-align: center;
+                        "
+                    >
+                        No Image
+                    </div>
+
+                <% } %>
+
+            </div>
+
+
+            <div class="profile_content">
+
+                <h2>
+                    <%= alumni.full_name %>
+                </h2>
+
+
+                <p class="designation">
+
+                    <%= alumni.job_title || "Alumni" %>
+
+                </p>
+
+
+                <div class="profile-info">
+
+                    <p>
+
+                        <strong>
+                            Graduation Year:
+                        </strong>
+
+                        <%= alumni.graduation_year || "N/A" %>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Department:
+                        </strong>
+
+                        <%= alumni.department || "N/A" %>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Degree:
+                        </strong>
+
+                        <%= alumni.degree_program || "N/A" %>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Company:
+                        </strong>
+
+                        <%= alumni.company || "N/A" %>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Email:
+                        </strong>
+
+                        <%= alumni.email %>
+
+                    </p>
+
+                </div>
+
+
+                <div class="profile-actions">
+
+                    <a
+                        href="/alumni/<%= alumni.id %>"
+                        class="btn"
+                    >
+                        View Full Profile
+                    </a>
+
+
+                    <a
+                        href="/alumni/edit/<%= alumni.id %>"
+                        class="btn"
+                    >
+                        Edit Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Alumni Management System &copy; 2026
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
