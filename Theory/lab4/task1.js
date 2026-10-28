@@ -1,0 +1,11 @@
+let age = 20;
+let price = 20.33;
+let isStudent = true;
+let name = "Shaheer";
+let today = new Date();
+let isUndefined = undefined;
+let intArray = [2,4,2,5,9,6];
+let strArray = ["Semester 5", "Software Engineering"];
+let mxdArray = [3,0,2, "SIBA", 0.9];
+let obj = {ID: 1, Name: "Shaheer", Dep: "CS" };
+console.log(obj.Name);
