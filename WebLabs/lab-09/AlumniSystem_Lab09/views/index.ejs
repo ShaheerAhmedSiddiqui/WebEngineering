@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Management System</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header><h1>Alumni Management System</h1></header>
+    <nav class="navbar">
+        <div class="logo"><h3>AlumniConnect</h3></div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/register">Register Alumni</a></li>
+            <li><a href="/pdf">Export PDF</a></li>
+            <li><form method="POST" action="/logout"><button type="submit">Log out</button></form></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="container">
+            <h2>Alumni Directory</h2>
+            <p>Welcome, <strong><%= currentUser ? currentUser.name : '' %></strong>. Manage registered alumni records below.</p>
+            <a class="btn" href="/register">Add New Alumni</a>
+            <a class="btn" href="/pdf">Export All Alumni PDF</a>
+            <form class="search-box" method="GET" action="/">
+                <label for="q">Search Alumni</label>
+                <input type="text" id="q" name="q" value="<%= q %>" placeholder="Search by name, email or department">
+                <button type="submit">Search</button>
+                <a class="btn" href="/">Clear</a>
+            </form>
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>ID</th><th>Image</th><th>Full Name</th><th>Email</th><th>Department</th><th>Graduation Year</th><th>Employment</th><th>Actions</th></tr></thead>
+                    <tbody>
+                    <% if (!alumni.length) { %>
+                        <tr><td colspan="8">No alumni records found.</td></tr>
+                    <% } %>
+                    <% alumni.forEach(function(a) { %>
+                        <tr>
+                            <td><%= a.id %></td>
+                            <td><% if (a.profile_image) { %><img src="/uploads/<%= a.profile_image %>" alt="Profile image"><% } else { %>N/A<% } %></td>
+                            <td><%= a.full_name %></td><td><%= a.email %></td>
+                            <td><%= a.department || '-' %></td><td><%= a.graduation_year || '-' %></td>
+                            <td><%= a.employment_status || '-' %></td>
+                            <td>
+                                <a class="btn" href="/view/<%= a.id %>">View</a>
+                                <a class="btn" href="/edit/<%= a.id %>">Edit</a>
+                                <a class="btn" href="/pdf/<%= a.id %>">PDF</a>
+                                <form method="POST" action="/delete/<%= a.id %>" onsubmit="return confirm('Delete this alumni record?')">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer><p>Alumni Management System &copy; 2026</p></footer>
+</body>
+</html>

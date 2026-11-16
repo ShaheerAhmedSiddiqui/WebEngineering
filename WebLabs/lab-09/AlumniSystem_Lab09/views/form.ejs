@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> | Alumni Management System</title><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header><h1>Alumni Management System</h1></header>
+    <nav class="navbar">
+        <div class="logo"><h3>AlumniConnect</h3></div>
+        <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/register">Register Alumni</a></li></ul>
+    </nav>
+    <main><div class="container">
+        <h2><%= title %></h2>
+        <form action="<%= action %>" method="POST" enctype="multipart/form-data">
+            <h3>Personal Information</h3>
+            <label for="full_name">Full Name *</label><input id="full_name" type="text" name="full_name" value="<%= alumni ? alumni.full_name : '' %>" required>
+            <label for="email">Email *</label><input id="email" type="email" name="email" value="<%= alumni ? alumni.email : '' %>" required>
+            <% if (!alumni) { %><label for="password">Password *</label><input id="password" type="password" name="password" required><% } %>
+            <label for="phone">Phone</label><input id="phone" type="text" name="phone" value="<%= alumni ? alumni.phone || '' : '' %>">
+            <label for="dob">Date of Birth</label><input id="dob" type="date" name="dob" value="<%= alumni && alumni.dob ? String(alumni.dob).slice(0,10) : '' %>">
+            <label>Gender</label>
+            <% ['Male','Female','Other'].forEach(function(v) { %><label><input type="radio" name="gender" value="<%= v %>" <%= alumni && alumni.gender === v ? 'checked' : '' %>> <%= v %></label><% }) %>
+
+            <h3>Academic Information</h3>
+            <label for="department">Department</label><select id="department" name="department"><option value="">Select Department</option><% ['Computer Science','Information Technology','Software Engineering','Electrical Engineering','Business Administration'].forEach(function(v) { %><option value="<%= v %>" <%= alumni && alumni.department === v ? 'selected' : '' %>><%= v %></option><% }) %></select>
+            <label for="graduation_year">Graduation Year</label><select id="graduation_year" name="graduation_year"><option value="">Select Year</option><% [2022,2023,2024,2025,2026,2027].forEach(function(v) { %><option value="<%= v %>" <%= alumni && String(alumni.graduation_year) === String(v) ? 'selected' : '' %>><%= v %></option><% }) %></select>
+            <label for="cgpa">CGPA</label><input id="cgpa" type="number" name="cgpa" min="0" max="4" step="0.01" value="<%= alumni ? alumni.cgpa || '' : '' %>">
+            <label>Degree Program</label><% ['BS','MS','PhD'].forEach(function(v) { %><label><input type="radio" name="degree_program" value="<%= v %>" <%= alumni && alumni.degree_program === v ? 'checked' : '' %>> <%= v %></label><% }) %>
+
+            <h3>Professional Information</h3>
+            <label for="employment_status">Employment Status</label><select id="employment_status" name="employment_status"><option value="">Select Status</option><% ['Student','Employed','Self Employed','Unemployed'].forEach(function(v) { %><option value="<%= v %>" <%= alumni && alumni.employment_status === v ? 'selected' : '' %>><%= v %></option><% }) %></select>
+            <label for="company">Company</label><input id="company" name="company" value="<%= alumni ? alumni.company || '' : '' %>">
+            <label for="job_title">Job Title</label><input id="job_title" name="job_title" value="<%= alumni ? alumni.job_title || '' : '' %>">
+            <label>Skills</label>
+            <% var selectedSkills = alumni && alumni.skills ? alumni.skills.split(',').map(function(s){return s.trim();}) : []; %>
+            <% ['HTML','CSS','JavaScript','Node.js','PHP','Python','MySQL'].forEach(function(v) { %><label><input type="checkbox" name="skills" value="<%= v %>" <%= selectedSkills.includes(v) ? 'checked' : '' %>> <%= v %></label><% }) %>
+
+            <h3>Contact & Profile</h3>
+            <label for="contact_preference">Contact Preference</label><select id="contact_preference" name="contact_preference"><% ['','Email','Phone','WhatsApp'].forEach(function(v) { %><option value="<%= v %>" <%= alumni && alumni.contact_preference === v ? 'selected' : '' %>><%= v || 'Select Preference' %></option><% }) %></select>
+            <label for="linkedin">LinkedIn URL</label><input id="linkedin" type="url" name="linkedin" value="<%= alumni ? alumni.linkedin || '' : '' %>">
+            <label for="bio">Bio</label><textarea id="bio" name="bio" rows="5"><%= alumni ? alumni.bio || '' : '' %></textarea>
+
+            <h3>Upload Documents</h3>
+            <% if (alumni && alumni.profile_image) { %><div class="current-image"><p>Current Profile Image:</p><img src="/uploads/<%= alumni.profile_image %>" alt="Current profile image"></div><% } %>
+            <label for="profile_image">Profile Image <%= alumni ? '(Optional)' : '*' %></label><input id="profile_image" type="file" name="profile_image" accept="image/png,image/jpeg,image/gif" <%= alumni ? '' : 'required' %>>
+            <% if (alumni && alumni.resume) { %><div class="file-info">Current Resume: <a href="/uploads/documents/<%= alumni.resume %>" target="_blank">View Resume</a></div><% } %>
+            <label for="resume">Resume / CV</label><input id="resume" type="file" name="resume" accept=".pdf,.doc,.docx">
+            <label><input type="checkbox" name="newsletter" value="1" <%= alumni && alumni.newsletter ? 'checked' : '' %>> Subscribe to newsletter</label>
+            <% if (!alumni) { %><label><input type="checkbox" name="terms_accepted" value="1" required> I accept the terms and conditions *</label><% } %>
+            <button type="submit"><%= alumni ? 'Update Alumni' : 'Register Alumni' %></button>
+            <a class="btn" href="/">Cancel</a>
+        </form>
+    </div></main>
+    <footer><p>Alumni Management System &copy; 2026</p></footer>
+</body>
+</html>

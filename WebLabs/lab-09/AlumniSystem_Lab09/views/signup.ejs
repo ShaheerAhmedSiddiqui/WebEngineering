@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Alumni Management System</title><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header><h1>Alumni Management System</h1></header>
+    <nav><a href="/login">Login</a><a href="/signup">Create Account</a></nav>
+    <main><div class="container">
+        <h2>Create Account</h2>
+        <% if (error) { %><p class="success-message"><%= error %></p><% } %>
+        <form method="POST" action="/signup">
+            <label for="name">Full Name:</label><input id="name" type="text" name="name" value="<%= name %>" maxlength="100" placeholder="Enter your full name" required>
+            <label for="email">Email:</label><input id="email" type="email" name="email" value="<%= email %>" placeholder="Enter your email" required>
+            <label for="password">Password:</label><input id="password" type="password" name="password" minlength="8" placeholder="At least 8 characters" required>
+            <label for="confirm_password">Confirm Password:</label><input id="confirm_password" type="password" name="confirm_password" minlength="8" placeholder="Confirm your password" required>
+            <button type="submit">Create Account</button>
+        </form>
+        <p>Already have an account? <a href="/login">Login here</a></p>
+    </div></main>
+    <footer><p>Alumni Management System &copy; 2026</p></footer>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Details | Alumni Management System</title><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header><h1>Alumni Management System</h1></header>
+    <nav class="navbar"><div class="logo"><h3>AlumniConnect</h3></div><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/register">Register Alumni</a></li></ul></nav>
+    <main><div class="alumni-details">
+        <h2>Alumni Details</h2>
+        <% if (alumni.profile_image) { %><img src="/uploads/<%= alumni.profile_image %>" alt="Profile image"><% } %>
+        <h3>Personal Information</h3>
+        <p><strong>Registration ID:</strong> <%= alumni.id %></p>
+        <p><strong>Full Name:</strong> <%= alumni.full_name %></p>
+        <p><strong>Email:</strong> <%= alumni.email %></p>
+        <p><strong>Phone:</strong> <%= alumni.phone || '-' %></p>
+        <p><strong>Date of Birth:</strong> <%= alumni.dob || '-' %></p>
+        <p><strong>Gender:</strong> <%= alumni.gender || '-' %></p>
+        <h3>Academic Information</h3>
+        <p><strong>Department:</strong> <%= alumni.department || '-' %></p>
+        <p><strong>Graduation Year:</strong> <%= alumni.graduation_year || '-' %></p>
+        <p><strong>CGPA:</strong> <%= alumni.cgpa || '-' %></p>
+        <p><strong>Degree Program:</strong> <%= alumni.degree_program || '-' %></p>
+        <h3>Professional Information</h3>
+        <p><strong>Employment Status:</strong> <%= alumni.employment_status || '-' %></p>
+        <p><strong>Company:</strong> <%= alumni.company || '-' %></p>
+        <p><strong>Job Title:</strong> <%= alumni.job_title || '-' %></p>
+        <p><strong>Skills:</strong> <%= alumni.skills || '-' %></p>
+        <h3>Contact & Profile</h3>
+        <p><strong>Contact Preference:</strong> <%= alumni.contact_preference || '-' %></p>
+        <p><strong>LinkedIn:</strong> <% if (alumni.linkedin) { %><a href="<%= alumni.linkedin %>" target="_blank"><%= alumni.linkedin %></a><% } else { %>-<% } %></p>
+        <p><strong>Bio:</strong> <%= alumni.bio || '-' %></p>
+        <p><strong>Newsletter:</strong> <%= alumni.newsletter ? 'Yes' : 'No' %></p>
+        <% if (alumni.resume) { %><p><strong>Resume:</strong> <a href="/uploads/documents/<%= alumni.resume %>" target="_blank">Open Resume</a></p><% } %>
+        <hr>
+        <a class="btn" href="/">Back to Directory</a>
+        <a class="btn" href="/edit/<%= alumni.id %>">Edit Alumni</a>
+        <a class="btn" href="/pdf/<%= alumni.id %>">Download PDF</a>
+    </div></main>
+    <footer><p>Alumni Management System &copy; 2026</p></footer>
+</body>
+</html>

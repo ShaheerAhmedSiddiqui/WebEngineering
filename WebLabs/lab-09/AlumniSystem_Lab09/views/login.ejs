@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Alumni Management System</title><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header><h1>Alumni Management System</h1></header>
+    <nav><a href="/login">Login</a><a href="/signup">Create Account</a></nav>
+    <main><div class="container">
+        <h2>Login</h2>
+        <% if (error) { %><p class="success-message"><%= error %></p><% } %>
+        <form method="POST" action="/login">
+            <label for="email">Email:</label><input id="email" type="email" name="email" value="<%= email %>" placeholder="Enter your email" required>
+            <label for="password">Password:</label><input id="password" type="password" name="password" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/signup">Create an account</a></p>
+    </div></main>
+    <footer><p>Alumni Management System &copy; 2026</p></footer>
+</body>
+</html>
