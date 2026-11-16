@@ -145,9 +145,6 @@ section.stats {
    Forms
 ========================================================= */
 
-form {
-    width: 100%;
-}
 
 label {
     display: block;
@@ -246,7 +243,7 @@ button a {
     background-color: #f4f6f8;
     padding: 20px;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin: 20px 0px;
 }
 
 .search-box input,
