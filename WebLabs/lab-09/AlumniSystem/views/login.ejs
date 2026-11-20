@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Login | AlumniConnect</title><link rel="stylesheet" href="/style.css"></head>
+<body><header><h1>Alumni Management System</h1></header><nav class="navbar"><div class="logo"><h3>AlumniConnect</h3></div></nav>
+<main><div class="container auth-container"><h2>Welcome Back</h2><p>Log in with the account created by your administrator.</p>
+<% if (notice) { %><p class="notice"><%= notice %></p><% } %><% if (error) { %><p class="error-message"><%= error %></p><% } %>
+<form method="POST" action="/login"><label for="email">Email address</label><input id="email" type="email" name="email" value="<%= email %>" autocomplete="username" required><label for="password">Password</label><input id="password" type="password" name="password" autocomplete="current-password" required><button type="submit">Log In</button></form>
+<p class="muted">Alumni accounts are created by the system administrator.</p></div></main><footer><p>Alumni Management System &copy; 2026</p></footer></body></html>
