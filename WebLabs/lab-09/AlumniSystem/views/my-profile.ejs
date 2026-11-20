@@ -1,6 +1,127 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>My Profile | AlumniConnect</title><link rel="stylesheet" href="/style.css"></head>
-<body><header><h1>Alumni Management System</h1></header><nav class="navbar"><div class="logo"><h3>AlumniConnect</h3></div><ul class="nav-links"><li><a href="/directory">Directory</a></li><li><a href="/my-profile">My Profile</a></li><li><form method="POST" action="/logout"><button type="submit" class="nav-button">Log out</button></form></li></ul></nav>
-<main><div class="container alumni-details"><div class="page-heading"><div><p class="eyebrow">PERSONAL SPACE</p><h2>My Profile</h2><p>Account: <strong><%= currentUser.name %></strong> · <%= currentUser.email %></p></div><a class="btn" href="/profile/edit"><%= profile ? 'Edit Profile' : 'Complete Profile' %></a></div><% if (notice) { %><p class="notice"><%= notice %></p><% } %>
-<% if (!profile) { %><div class="empty-state"><h3>Your profile is not complete yet</h3><p>Add your academic and professional details so other alumni can learn about you.</p><a class="btn" href="/profile/edit">Complete My Profile</a></div><% } else { %>
-<div class="profile-hero"><% if (profile.profile_image) { %><img src="/uploads/<%= profile.profile_image %>" alt="Your profile image"><% } else { %><span class="avatar-placeholder large-avatar"><%= currentUser.name.charAt(0).toUpperCase() %></span><% } %><div><h2><%= currentUser.name %></h2><p><%= profile.job_title || 'Alumni member' %><%= profile.company ? ' at ' + profile.company : '' %></p><p class="muted"><%= profile.department || 'Department not added' %><%= profile.graduation_year ? ' · Class of ' + profile.graduation_year : '' %></p></div></div>
-<h3>Academic Information</h3><p><strong>Department:</strong> <%= profile.department || 'Not provided' %></p><p><strong>Degree:</strong> <%= profile.degree_program || 'Not provided' %></p><p><strong>Graduation year:</strong> <%= profile.graduation_year || 'Not provided' %></p><p><strong>CGPA:</strong> <%= profile.cgpa || 'Not provided' %></p><h3>Professional Information</h3><p><strong>Status:</strong> <%= profile.employment_status || 'Not provided' %></p><p><strong>Company:</strong> <%= profile.company || 'Not provided' %></p><p><strong>Job title:</strong> <%= profile.job_title || 'Not provided' %></p><p><strong>Skills:</strong> <%= profile.skills || 'Not provided' %></p><h3>About You</h3><p><%= profile.bio || 'You have not added a bio yet.' %></p><p><strong>LinkedIn:</strong> <% if (profile.linkedin) { %><a href="<%= profile.linkedin %>" target="_blank" rel="noopener noreferrer">Open LinkedIn profile</a><% } else { %>Not provided<% } %></p><p><strong>Phone:</strong> <%= profile.phone ? (profile.contact_visible ? 'Shared with signed-in alumni' : 'Private') : 'Not provided' %></p><% if (profile.resume) { %><p><strong>Resume:</strong> <a href="/resume/<%= currentUser.id %>" target="_blank" rel="noopener noreferrer">Open uploaded resume</a> <span class="muted">(private link; do not share it publicly)</span></p><% } %><a class="btn" href="/directory/<%= currentUser.id %>">View Public Profile</a><% } %></div></main><footer><p>Alumni Management System &copy; 2026</p></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | AlumniConnect</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Alumni Management System</h1>
+    </header>
+    <nav class="navbar">
+        <div class="logo">
+            <h3>AlumniConnect</h3>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/directory">Directory</a></li>
+            <li><a href="/my-profile">My Profile</a></li>
+            <li>
+                <form method="POST" action="/logout"><button type="submit" class="nav-button">Log out</button></form>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div class="container alumni-details">
+            <div class="page-heading">
+                <div>
+                    <p class="eyebrow">PERSONAL SPACE</p>
+                    <h2>My Profile</h2>
+                    <p>Account: <strong>
+                            <%= currentUser.name %>
+                        </strong> · <%= currentUser.email %>
+                    </p>
+                </div><a class="btn" href="/profile/edit">
+                    <%= profile ? 'Edit Profile' : 'Complete Profile' %>
+                </a>
+            </div>
+            <% if (notice) { %>
+                <p class="notice">
+                    <%= notice %>
+                </p>
+                <% } %>
+                    <% if (!profile) { %>
+                        <div class="empty-state">
+                            <h3>Your profile is not complete yet</h3>
+                            <p>Add your academic and professional details so other alumni can learn about you.</p><a
+                                class="btn" href="/profile/edit">Complete My Profile</a>
+                        </div>
+                        <% } else { %>
+                            <div class="profile-hero">
+                                <% if (profile.profile_image) { %><img src="/uploads/<%= profile.profile_image %>"
+                                        alt="Your profile image">
+                                    <% } else { %><span class="avatar-placeholder large-avatar">
+                                            <%= currentUser.name.charAt(0).toUpperCase() %>
+                                        </span>
+                                        <% } %>
+                                            <div>
+                                                <h2>
+                                                    <%= currentUser.name %>
+                                                </h2>
+                                                <p>
+                                                    <%= profile.job_title || 'Alumni member' %>
+                                                        <%= profile.company ? ' at ' + profile.company : '' %>
+                                                </p>
+                                                <p class="muted">
+                                                    <%= profile.department || 'Department not added' %>
+                                                        <%= profile.graduation_year ? ' · Class of ' +
+                                                            profile.graduation_year : '' %>
+                                                </p>
+                                            </div>
+                            </div>
+                            <h3>Academic Information</h3>
+                            <p><strong>Department:</strong>
+                                <%= profile.department || 'Not provided' %>
+                            </p>
+                            <p><strong>Degree:</strong>
+                                <%= profile.degree_program || 'Not provided' %>
+                            </p>
+                            <p><strong>Graduation year:</strong>
+                                <%= profile.graduation_year || 'Not provided' %>
+                            </p>
+                            <p><strong>CGPA:</strong>
+                                <%= profile.cgpa || 'Not provided' %>
+                            </p>
+                            <h3>Professional Information</h3>
+                            <p><strong>Status:</strong>
+                                <%= profile.employment_status || 'Not provided' %>
+                            </p>
+                            <p><strong>Company:</strong>
+                                <%= profile.company || 'Not provided' %>
+                            </p>
+                            <p><strong>Job title:</strong>
+                                <%= profile.job_title || 'Not provided' %>
+                            </p>
+                            <p><strong>Skills:</strong>
+                                <%= profile.skills || 'Not provided' %>
+                            </p>
+                            <h3>About You</h3>
+                            <p>
+                                <%= profile.bio || 'You have not added a bio yet.' %>
+                            </p>
+                            <p><strong>LinkedIn:</strong>
+                                <% if (profile.linkedin) { %><a href="<%= profile.linkedin %>" target="_blank"
+                                        rel="noopener noreferrer">Open LinkedIn profile</a>
+                                    <% } else { %>Not provided<% } %>
+                            </p>
+                            <p><strong>Phone:</strong>
+                                <%= profile.phone ? (profile.contact_visible ? 'Shared with signed-in alumni'
+                                    : 'Private' ) : 'Not provided' %>
+                            </p>
+                            <% if (profile.resume) { %>
+                                <p><strong>Resume:</strong> <a href="/resume/<%= currentUser.id %>" target="_blank"
+                                        rel="noopener noreferrer">Open uploaded resume</a> <span class="muted">(private
+                                        link; do not share it publicly)</span></p>
+                                <% } %><a class="btn" href="/directory/<%= currentUser.id %>">View Public Profile</a>
+                                    <% } %>
+        </div>
+    </main>
+    <footer>
+        <p>Alumni Management System &copy; 2026</p>
+    </footer>
+</body>
+
+</html>
