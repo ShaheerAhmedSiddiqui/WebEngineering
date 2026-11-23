@@ -260,7 +260,7 @@ async function start() {
       if (d.cgpa !== null && (d.cgpa < 0 || d.cgpa > 4)) return res.status(400).render('profile-form', { profile: { ...oldProfile, ...d }, error: 'CGPA must be between 0 and 4.' });
       d.profile_image = req.files?.profile_image?.[0]?.filename || oldProfile?.profile_image || null;
       d.resume = req.files?.resume?.[0]?.filename || oldProfile?.resume || null;
-      const fields = ['phone','gender','department','graduation_year','cgpa','degree_program','employment_status','company','job_title','skills','linkedin','bio','contact_visible','profile_image','resume'];
+      const fields = ['phone', 'gender', 'department', 'graduation_year', 'cgpa', 'degree_program', 'employment_status', 'company', 'job_title', 'skills', 'linkedin', 'bio', 'contact_visible', 'profile_image', 'resume'];
       if (oldProfile) {
         const assignments = fields.map((f) => `${f} = ?`).join(', ');
         await db.execute(`UPDATE alumni_profiles SET ${assignments}, updated_at = CURRENT_TIMESTAMP WHERE user_id = ?`, [...fields.map((f) => d[f]), userId]);
