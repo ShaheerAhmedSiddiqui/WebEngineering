@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Chat with <%= recipient.full_name %> | AlumniConnect</title><link rel="stylesheet" href="/style.css"></head>
+<body><header><h1>Alumni Management System</h1></header>
+<nav class="navbar"><div class="logo"><h3>AlumniConnect</h3></div><ul class="nav-links"><li><a href="/directory">Directory</a></li><li><a href="/messages">Messages</a></li><li><a href="/my-profile">My Profile</a></li><li><form method="POST" action="/logout"><button type="submit" class="nav-button">Log out</button></form></li></ul></nav>
+<main class="chat-main"><section class="chat-panel">
+<div class="chat-topbar"><a class="chat-back" href="/messages" aria-label="Back to messages">←</a><% if (recipient.profile_image) { %><img class="chat-avatar" src="/uploads/<%= recipient.profile_image %>" alt=""><% } else { %><span class="chat-avatar avatar-placeholder"><%= recipient.full_name.charAt(0).toUpperCase() %></span><% } %><div class="chat-person"><strong><%= recipient.full_name %></strong><span><%= recipient.job_title || 'Alumni member' %><%= recipient.company ? ' · ' + recipient.company : '' %></span></div><span class="private-label">Private chat</span></div>
+<div class="chat-messages" id="chatMessages" aria-live="polite">
+<% if (!history.length) { %><div class="chat-welcome" id="chatWelcome"><span>✦</span><strong>Start a conversation</strong><p>Say hello to <%= recipient.full_name %>. Your messages are private between you two.</p></div><% } %>
+<% history.forEach(function(m) { %><div class="chat-message <%= m.sender_id === currentUser.id ? 'sent' : 'received' %>"><div class="bubble"><%= m.message %></div><time><%= new Date(m.created_at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) %></time></div><% }) %>
+</div><div class="chat-error" id="chatError" role="alert"></div>
+<form class="chat-composer" id="chatForm"><textarea id="messageInput" rows="1" maxlength="2000" placeholder="Write a message..." aria-label="Write a message" required></textarea><button type="submit" id="sendButton" aria-label="Send message">Send <span>➤</span></button></form><p class="chat-footnote">Messages are delivered in real time</p></section></main><footer><p>Alumni Management System &copy; 2026</p></footer>
+<script src="/socket.io/socket.io.js"></script><script>
+(() => {
+  const recipientId = <%= JSON.stringify(recipient.id) %>;
+  const currentUserId = <%= JSON.stringify(currentUser.id) %>;
+  const socket = io(), list = document.getElementById('chatMessages');
+  const form = document.getElementById('chatForm'), input = document.getElementById('messageInput');
+  const error = document.getElementById('chatError'), button = document.getElementById('sendButton');
+  function scrollToBottom() { list.scrollTop = list.scrollHeight; }
+  function addMessage(message) {
+    const welcome = document.getElementById('chatWelcome'); if (welcome) welcome.remove();
+    const row = document.createElement('div');
+    row.className = 'chat-message ' + (Number(message.sender_id) === Number(currentUserId) ? 'sent' : 'received');
+    const bubble = document.createElement('div'); bubble.className = 'bubble'; bubble.textContent = message.message;
+    const time = document.createElement('time'); time.textContent = new Date(message.created_at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    row.append(bubble, time); list.appendChild(row); scrollToBottom();
+  }
+  socket.on('connect', () => socket.emit('join_conversation', { recipientId }, result => {
+    if (result && result.error) error.textContent = result.error; else error.textContent = '';
+  }));
+  socket.on('connect_error', () => { error.textContent = 'Connection lost. Please refresh the page and try again.'; });
+  socket.on('session_ended', () => { socket.disconnect(); window.location.href = '/login'; });
+  socket.on('new_message', addMessage);
+  form.addEventListener('submit', event => {
+    event.preventDefault(); const message = input.value.trim();
+    if (!message || !socket.connected) return;
+    button.disabled = true;
+    socket.emit('send_message', { recipientId, message }, result => {
+      button.disabled = false;
+      if (result && result.error) error.textContent = result.error;
+      else { error.textContent = ''; input.value = ''; input.style.height = 'auto'; input.focus(); }
+    });
+  });
+  input.addEventListener('keydown', event => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); form.requestSubmit(); } });
+  input.addEventListener('input', () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 120) + 'px'; });
+  scrollToBottom();
+})();
+</script></body></html>
